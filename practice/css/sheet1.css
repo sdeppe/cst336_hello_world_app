@@ -1,0 +1,15 @@
+img {
+    margin: 100px; 
+}
+
+.highlighted { 
+    background-color: yellow;
+}
+
+#first {
+    background-color: blue;
+}
+
+#yes {
+    background-color:red;
+}
