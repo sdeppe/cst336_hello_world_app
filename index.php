@@ -4,7 +4,7 @@
         <title> </title>
     </head>
     <body>
-        <a href="/classwork/index.php">Main Class Link</a>
+        <a href="/labs/1/index.html">Main Class Link</a>
 
     </body>
 </html>
