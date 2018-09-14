@@ -1,0 +1,19 @@
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#header{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 30px;
+    background-color: #0A1143;
+    color:white;
+}

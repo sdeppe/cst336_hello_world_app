@@ -5,6 +5,6 @@
     </head>
     <body>
         <a href="/labs/1/index.html">Main Class Link</a>
-
+        <a href="/homework/1/index.html">Main Class Link</a>
     </body>
 </html>
