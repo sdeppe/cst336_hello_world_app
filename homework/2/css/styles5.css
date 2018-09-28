@@ -1,0 +1,32 @@
+body {
+    background-color: blue;
+}
+
+#player1 {
+    background-color: white;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+#player2 {
+    background-color: white;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+#title {
+    text-align: center;
+    color: white;
+}
+
+#winner {
+    text-align: center;
+    color: orange;
+    padding-bottom: 20px;
+}
+
+#again {
+    text-align: center;
+}
