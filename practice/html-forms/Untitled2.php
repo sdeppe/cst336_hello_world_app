@@ -1,9 +1,9 @@
 <?php
     session_start();
     
-    $_POST["firstName1[]"]
+    $_POST["firstName[]"];
 
-    echo $_POST["firstName1[]"];
+    echo $_POST["firstName[]"];
 
 ?>
 
@@ -16,23 +16,23 @@
         <title> </title>
     </head>
     <body>
-        <form action="Untitled2.html" method="POST">
+        <form action="Untitled2.php" method="POST">
             
             Names:    <br>
             <input type="radio"  id="item1"  name="degreeChoices"  value="High School" >
-                <input type="text" name="fullName1[]" size="25" /> <br><br>
+                <input type="text" name="fullName[]" size="25" /> <br><br>
                 
             <input type="radio"  id="item2"  name="degreeChoices" value="College">
-                <input type="text" name="fullName2[]" size="25" /> <br><br>
+                <input type="text" name="fullName[]" size="25" /> <br><br>
                 
             <input type="radio"  id="item3"  name="degreeChoices" value="College">
-                <input type="text" name="fullName3[]" size="25" /> <br><br>
+                <input type="text" name="fullName[]" size="25" /> <br><br>
                 
             <input type="radio"  id="item4"  name="degreeChoices" value="College">
-                <input type="text" name="fullName4[]" size="25" /> <br><br>
+                <input type="text" name="fullName[]" size="25" /> <br><br>
                 
             <input type="radio"  id="item5"  name="degreeChoices" value="College">
-                <input type="text" name="fullName5[]" size="25" /> <br><br>
+                <input type="text" name="fullName[]" size="25" /> <br><br>
             
             <input type="submit" value="Save"/>
             <input type="submit" value="Clear" onclick="displayData()"/>

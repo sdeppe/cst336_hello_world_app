@@ -16,5 +16,7 @@
         <br />
         <a href="/labs/5/index.php">Lab 5</a>
         <br />
+        <a href="/meme_lab/welcome.php">Lab 6</a>
+        <br />
     </body>
 </html>
