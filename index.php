@@ -18,5 +18,9 @@
         <br />
         <a href="/meme_lab/welcome.php">Lab 6</a>
         <br />
+        <a href="/labs/7/index.php">Lab 7</a>
+        <br />
+        <a href="/labs/8/index.html">Lab 8</a>
+        <br />
     </body>
 </html>

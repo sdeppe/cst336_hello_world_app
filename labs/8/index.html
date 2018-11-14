@@ -20,10 +20,24 @@
             
             <div id="word"></div>
             <div id="letters"></div>
+            <div id='hint'>
+                <button class="hintBtn btn btn-info">Hint</button>
+            </div>
+            
+            <div id="won">
+                <h2>You Won!</h2>
+                <button class="replayBtn btn btn-success">Play Again</button>
+            </div>
+            <div id="lost">
+                <h2>You Lost!</h2>
+                <button class="replayBtn btn btn-warning">Play Again</button>
+            </div>
             
             <div id="man">
-                <img src="img/stick_0.png" id="hangImg">
+                <img src="img/stick_0.png" class="manImg" id="hangImg">
             </div>
         </div>
+        
+    <script src='js/hangman.js'></script>
     </body>
 </html>
