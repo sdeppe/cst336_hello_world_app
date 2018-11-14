@@ -60,6 +60,7 @@ function displayMemes($records, $editable=false) {
         if ($editable) {
             echo '<div class="edit-menu">';
             echo '<a href="edit.php?id='. $record['id'].'">Edit</a>';
+            echo ' <a href="delete.php?id='. $record['id'].'">Delete</a>';
             echo '</div>';
        }
        echo '</div>';
@@ -152,6 +153,39 @@ function createMeme($line1, $line2, $memeType) {
 
 }
 
+function editMeme($id, $line1, $line2, $memeType) {
+    global $dbConn;
+    
+    //Step 1: Get the category ID for the selected meme type
+    $categoryID = getCategoryID($memeType);
+    
+    //Step 2: Update the meme record in the all_memes table
+    $sql = "UPDATE `all_memes`
+            SET
+                line1 = :line1, 
+                line2 = :line2,
+                category_id = :category_id
+            WHERE
+                id = :id";
+              
+     $statement = $dbConn->prepare($sql);
+     $statement->execute(array(
+         ':line1' => $line1, ':line2' => $line2,
+         ':category_id' => $categoryID,
+         ':id' => $id
+         ));
+}
 
+function deleteMemeFromDB($memeID) {
+  global $dbConn;
+  
+  $sql = "DELETE
+    FROM all_memes
+    WHERE all_memes.id = $memeID";
+    
+    $statement = $dbConn->prepare($sql);
+    
+    $statement->execute();
+}
 
 ?>

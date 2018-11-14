@@ -4,6 +4,11 @@ include 'function.php';
 
 checkLoggedIn();
 
+if (isset($_POST['id'])) {
+    //user submitted the form to edit a meme
+    editMeme($_POST['id'], $_POST['line1'], $_POST['line2'], $_POST['meme-type']);
+}
+
 $memeID = $_GET['id'];
 $memeObj = fetchMemeFromDB($memeID);
 
@@ -19,7 +24,7 @@ function generateOptions($selectedType) {
         
         if ($selectedType == $memeType)
             echo "selected='selected' ";
-        
+            
         echo "value='$memeType'>$description</option>";
     }
 }
@@ -34,7 +39,7 @@ function generateOptions($selectedType) {
     <body>
         <?php include 'navigation.php' ?> 
         <h1>Edit Meme</h1>
-        <?php displayMemes(array($memeObj
+        <?php displayMemes(array($memeObj)); ?>
         
         <form method="post">
             <input type="hidden" name="id" value=<?= $memeObj['id'] ?>>
@@ -42,7 +47,7 @@ function generateOptions($selectedType) {
             Line 2: <input type="text" name="line2" value=<?= $memeObj['line2'] ?>></input> <br/>
             Meme Type:
             <select name="meme-type">
-                <?php generateOptions($memeObj['meme_type'); ?>
+                <?php generateOptions($memeObj['meme_type']); ?>
             </select>
             <br/>
             <input type="submit"></input>
