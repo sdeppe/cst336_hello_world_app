@@ -1,0 +1,30 @@
+body {
+    text-align: center;
+    margin: auto;
+    background-color: silver;
+    font-size: 22px;
+}
+
+#title {
+    text-align: center;
+    margin: auto;
+    font-family: times;
+    background-color: teal;
+    color: black;
+    padding: 1px;
+    font-size: 50px;
+}
+
+#changeValue {
+    border: dotted 1px black;
+    margin: auto;
+    padding: 0px;
+    color: yellow;
+    font-size: 25px;
+    background-color: pink;
+    position: relative;
+    margin-top: 280px;
+    height: 180px;
+    clear: both;
+}
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 9</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <style>
+            @import url("css/styles.css");
+        </style>
+    </head>
+    <body>
+        <div id="title">
+            <h1>Sign Up Form</h1>
+        </div>
+            <form method="get" id="form">
+                <br>   
+                Select State: <br>
+                <input type="text" id="state"> <br><br>
+                 
+                Select County: <br>  
+                <select id="selectCounty">
+                </select> <br> <br>
+        
+                Zip Code: <br>
+                <input type="text" id="zip" value=""> <div id="zipNotFound"></div><br>
+                <div id="zipError"></div>
+                
+                
+                Choose a username:  <br>
+                <input id="username" type="text" value=""><br><br>
+                
+                
+                Enter password: <br>
+                <input id="password1" type="password"><br><br>
+                
+                Re-enter password: <br>
+                <input id="password2" type="password"> <br><span id="checkPassword"></span><br>
+                
+                <input type = "submit" value="Sign Up Now!" onclick="validate()">
+          
+          </form>
+        
+        <div id="earthquakeResult"></div>
+        <div id="changeValue">
+            <p>Change values to update results.</p><br><br>
+        </div>
+    
+      <script> 
+        $("#selectState").change(getCountyList_jQuery);
+        
+        function getCountyList_jQuery() {        
+            $.ajax({
+                type: "get",
+                url: "http://hosting.csumb.edu/laramiguel/ajax/countyList.php",
+                dataType: "json",
+                data: { "state": $("#state").val() },
+                success: function(data,status) {
+                    $("#county").html("<option> Select One </option>");
+                    for (var i=0; i< data['counties'].length; i++){
+                        $("#county").append("<option>" + data["counties"][i].county + "</option>" );
+                    }
+                  },
+                  complete: function(data,status) { //optional, used for debugging purposes
+                    //  alert(status);
+                  }
+             });
+        }
+    
+        $("#zip").change(function(){
+            $.ajax({
+                type: "get",
+                url: "http://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php",
+                dataType: "json",
+                data: { "zip": $(this).val()},
+                success: function(data,status) {
+                    if (data == false) {
+                        $("#earthquakeResult").css({"font-weight": "bold", "color": "red"});
+                        $("#earthquakeResult").html("Zip code not found");
+                        console.log(data);
+                    }
+                    else{
+                        $("#earthquakeResult").html("City: " + data.city + "<br>  Latitude: " + data.latitude + "<br> Longitude: " + data.longitude + "<br>");
+                        console.log(data);
+                    }
+                }
+            })
+        });
+        
+        var allowSubmit=false;
+        $("#form").submit(function(){ 
+            if ($("#password1").val() != $("#password2").val()) {
+                $("#checkPassword").css({"font-weight": "bold", "color": "red"});
+                $("#checkPassword").html("Passwords do not match!");
+                allowSubmit = true;
+            } 
+            else{
+                $("#checkPassword").css({"font-weight": "bold", "color": "green"});
+                $("#checkPassword").html("Passwords Match!");
+                allowSubmit = false;
+            }
+            if (allowSubmit){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
+</html>
