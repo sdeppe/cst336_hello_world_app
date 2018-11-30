@@ -15,40 +15,67 @@
         <div id="title">
             <h1>Sign Up Form</h1>
         </div>
-            <form method="get" id="form">
-                <br>   
-                Select State: <br>
-                <input type="text" id="state"> <br><br>
-                 
-                Select County: <br>  
-                <select id="selectCounty">
-                </select> <br> <br>
-        
+            <form onsubmit="return validateForm()">
+                
+                <br>
+                First Name:<br>
+                <input type="text"><br>
+                
+                Last Name:<br>
+                <input type="text"><br>
+                
+                Email:<br>
+                <input type="text"><br>
+                
+                Phone Number:<br>
+                <input type="text"><br><br>
+                
                 Zip Code: <br>
-                <input type="text" id="zip" value=""> <div id="zipNotFound"></div><br>
+                <input type="text" id="zip" value=""> <div id="zipNotFound"></div>
                 <div id="zipError"></div>
                 
+                City:        <span id="city"></span>
                 
+                <br>
+                Latitude:     <span id="latitude"></span>
+                <br>
+                Longitude:     <span id="longitude"></span>
+                <br><br>
+                
+                Select State: <br>
+                <input type="text" id="state"> <br>
+                 
+                Select County: <br>  
+                <select id="county">
+                </select> <br>
+        
                 Choose a username:  <br>
-                <input id="username" type="text" value=""><br><br>
+                <input type="text" id = "username">
+                <span id="confirmation"></span><br/>
                 
                 
                 Enter password: <br>
-                <input id="password1" type="password"><br><br>
+                <input id="password1" type="password"><br>
                 
                 Re-enter password: <br>
                 <input id="password2" type="password"> <br><span id="checkPassword"></span><br>
                 
-                <input type = "submit" value="Sign Up Now!" onclick="validate()">
+                <input id = "submit" class="btn" type="submit" value="Sign Up Now!">
           
           </form>
         
-        <div id="earthquakeResult"></div>
         <div id="changeValue">
             <p>Change values to update results.</p><br><br>
         </div>
     
-      <script> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <script> 
+      
+         function validateForm() {
+            return false;
+        }
+        
         $("#selectState").change(getCountyList_jQuery);
         
         function getCountyList_jQuery() {        
@@ -69,46 +96,101 @@
              });
         }
     
-        $("#zip").change(function(){
+        $("#state").change(function() {
             $.ajax({
-                type: "get",
-                url: "http://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php",
+
+                type: "GET",
+                url: "http://itcdland.csumb.edu/~milara/ajax/countyList.php",
                 dataType: "json",
-                data: { "zip": $(this).val()},
+                data: { "state": $("#state").val()},
                 success: function(data,status) {
-                    if (data == false) {
-                        $("#earthquakeResult").css({"font-weight": "bold", "color": "red"});
-                        $("#earthquakeResult").html("Zip code not found");
-                        console.log(data);
+                    $("#county").html("<option> - Select One -</option>");
+                    for(var i = 0; i < data.length; i++){
+                         $("#county").append("<option>" + data[i].county + "</option>");
                     }
-                    else{
-                        $("#earthquakeResult").html("City: " + data.city + "<br>  Latitude: " + data.latitude + "<br> Longitude: " + data.longitude + "<br>");
-                        console.log(data);
-                    }
+                },
+                complete: function(data,status) {
                 }
-            })
+            });
         });
         
-        var allowSubmit=false;
-        $("#form").submit(function(){ 
-            if ($("#password1").val() != $("#password2").val()) {
-                $("#checkPassword").css({"font-weight": "bold", "color": "red"});
-                $("#checkPassword").html("Passwords do not match!");
-                allowSubmit = true;
-            } 
-            else{
-                $("#checkPassword").css({"font-weight": "bold", "color": "green"});
-                $("#checkPassword").html("Passwords Match!");
-                allowSubmit = false;
-            }
-            if (allowSubmit){
-                return true;
-            }else{
-                return false;
+        $("#username").change(function() {
+            $.ajax({
+                type: "GET",
+                url: "checkUsername.php",
+                dataType: "json",
+                data: { "username": $("#username").val() },
+                success: function(data,status) {
+                    if (!data) {
+                        $("#confirmation").html("Username Available!");
+                        $("#confirmation").css("color","green");
+                    } else {
+                        $("#confirmation").html("Username Unavailable!");
+                        $("#confirmation").css("color","red");
+                    }
+                },
+                complete: function(data,status) {
+                }
+            });
+        });
+        
+        $("#zip").change( function(){  
+            $.ajax({
+                type: "GET",
+                url: "http://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php",
+                dataType: "json",
+                data: { "zip": $("#zip").val()   },
+                success: function(data,status) {
+                    if(!data)
+                    {
+                        $("#zip").html("Not a valid zip code!");
+                        $("#zip").css("color","red");
+                    }
+                    else{
+                        $("#zip").html("");
+                  $("#city").html(data.city);
+                  $("#latitude").html(data.latitude);
+                  $("#longitude").html(data.longitude);
+                    }
+                },
+                complete: function(data,status) { 
+                }
+            });
+        } );
+        
+        // var allowSubmit=false;
+        // $("#form").submit(function(){ 
+        //     if ($("#password1").val() != $("#password2").val()) {
+        //         $("#checkPassword").css({"font-weight": "bold", "color": "red"});
+        //         $("#checkPassword").html("Passwords do not match!");
+        //         allowSubmit = true;
+        //     } 
+        //     else{
+        //         $("#checkPassword").css({"font-weight": "bold", "color": "green"});
+        //         $("#checkPassword").html("Passwords Match!");
+        //         allowSubmit = false;
+        //     }
+        //     if (allowSubmit){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // });
+        
+         $("#password2").change(function(){
+            var password = $("#password1").val();
+            var passwordCheck = $("#password2").val();
+            if (password == passwordCheck){
+                //chicken= false; 
+                $("#checkPassword").html("passwords match");
+                $("#checkPassword").css("color","green");
+            } else {
+                //chicken=true
+                $("#checkPassword").html("passwords do not match");
+                $("#checkPassword").css("color","red");
             }
         });
     
         </script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>
