@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> </title>
+    <link rel="stylesheet" type="text/css" href="racing.css">
+</head>
+
+<body>
+    <!--Search bar-->
+    <div>
+
+    </div>
+
+    <!--Pages-->
+    <div id="pages">
+        <table>
+            <thead>
+                <th>Code</th>
+                <th>Run From</th>
+                <th>To</th>
+                <th>Type</th>
+                <th>
+                    <button class="add action">
+                        <img src="img/racing-add.png" />
+                    </button>
+                </th>
+            </thead>
+            <tbody>
+                <!--Put all the pages data here-->
+            </tbody>
+        </table>
+    </div>
+
+    <!--Modal-->
+    <div id="modalBox" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <div>
+                <label for="raceId">Race ID</label>
+                <input id="raceId" type="text" />
+            </div>
+            <div>
+                <label for="raceDate">Race Date</label>
+                <input id="raceDate" type="date" />
+            </div>
+            <div>
+                <label for="startTime">Start Time</label>
+                <select>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select>
+                <label>24 hour</label>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input id="password" type="text" />
+            </div>
+            <div>
+                <span>Location</label>
+                <textarea id="location" rows="5"></textarea>
+            </div>
+            <div>
+                <button class="cancel">Cancel</button>
+                <button class="save">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="racing.js"></script>
+ 
+ <table>
+     <tr>
+         <td>ID</td>
+         <td>Date</td>
+         <td>Start Time</td>
+         <td>Location</td>
+     </tr>
+ </table>
+</body>
+
+</html>
