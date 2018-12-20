@@ -101,6 +101,118 @@
          <td>Location</td>
      </tr>
  </table>
+ <!--Modal-->
+    <div id="modalBox2" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <div>
+                <label for="racerId">Racer ID</label>
+                <input id="racerId" type="text" />
+            </div>
+            <div>
+                <label for="codeName">Code Name</label>
+                <input id="codeName" type="text" />
+            </div>
+            <div>
+                <label for="Year">Year</label>
+                <select>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                </select>
+            </div>
+            <div>
+                <label for="Make">Make</label>
+                <select>
+                    <option value="honda">Honda</option>
+                    <option value="toyota">Toyota</option>
+                    <option value="nissan">Nissan</option>
+                </select>
+            </div>
+            <div>
+                <label for="Model">Model</label>
+                <select>
+                    <option value="stuff">stuff</option>
+                </select>
+            </div>
+            <div>
+                <label for="comments">Comments</label>
+                <input id="comments" type="text" />
+            </div>
+                <button class="cancel">Cancel</button>
+                <button class="save">Save</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+ <!--Modal-->
+    <div id="modalBox3" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <div>
+                <h2 style="text-align:center">Cancel?</h2>
+            </div>
+            <div>
+                <!--race ID-->
+                (ID for the Race)
+            </div>
+           
+            <div>
+                Are you sure you want to cancel the race? You cannot undo this.
+            </div>
+                <button class="don't">Don't</button>
+                <button class="cancelRace">Yes, Cancel It!</button>
+            </div>
+        </div>
+    </div>
+    
+    <!--Modal-->
+    <div id="login" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            
+            <div>
+                <label for="username">Username: </label>
+                <input id="username" type="text" />
+            </div>
+            <div>
+                <label for="password">Password: </label>
+                <input id="password" type="text" />
+            </div>
+                <button class="login">Login</button>
+            </div>
+        </div>
+    </div>
+    <!--Modal-->
+    <div id="racers" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            
+            <div>
+                <label for="RacerId">Enter Race ID</label>
+                <div><input id="RacerId" type="text" /></div>
+            </div>
+            <div>
+                <label for="RacerPassword">Enter Password</label>
+                <div><input id="RacerPassword" type="text" /></div>
+            </div>
+                <button class="go">Go</button>
+            </div>
+            
+            <div>
+                <button class="signup">Signup</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

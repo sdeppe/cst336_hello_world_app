@@ -16,7 +16,7 @@ if (isset($_POST['line1']) && isset($_POST['line2'])) {
 <html>
   <head>
     <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" href="css/styles123.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
     <?php include 'navigation.php' ?>

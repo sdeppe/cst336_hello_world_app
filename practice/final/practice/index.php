@@ -1,8 +1,5 @@
 <?php
   session_start();
-    include 'dbConnection.php';
-    
-    $dbConn = getDatabaseConnection('final');
 
     $httpMethod = strtoupper($_SERVER['REQUEST_METHOD']);
 
@@ -20,12 +17,12 @@
         $dbPort = 3306;
         
         // Which database (the name of the database in phpMyAdmin)?
-        $database = "final";
+        $database = "practice_exam";
         
         // My user information...I could have prompted for password, as well, or stored in the
         // environment, or, or, or (all in the name of better security)
-        $username = getenv('shawn');
-        $password = "cst336";
+        $username = getenv('C9_USER');
+        $password = "";
         
         // Establish the connection and then alter how we are tracking errors (look those keywords up)
         $dbConn = new PDO("mysql:host=$servername;port=$dbPort;dbname=$database", $username, $password);
@@ -35,12 +32,6 @@
         $whereSql = "
         SELECT p.*, s.name AS 'status_name', t.name AS 'type_name'
         FROM page p INNER JOIN
-            status s ON p.status_id = s.id LEFT OUTER JOIN
-            type t ON p.type_id = t.id
-        WHERE status_id <> 0
-        
-        SELECT f.id AS 'race_id', r.date AS 'race_date'
-        FROM final f INNER JOIN
             status s ON p.status_id = s.id LEFT OUTER JOIN
             type t ON p.type_id = t.id
         WHERE status_id <> 0
@@ -73,12 +64,12 @@
         $dbPort = 3306;
         
         // Which database (the name of the database in phpMyAdmin)?
-        $database = "final";
+        $database = "practice_exam";
         
         // My user information...I could have prompted for password, as well, or stored in the
         // environment, or, or, or (all in the name of better security)
-        $username = getenv('shawn');
-        $password = "cst336";
+        $username = getenv('C9_USER');
+        $password = "";
         
         // Establish the connection and then alter how we are tracking errors (look those keywords up)
         $dbConn = new PDO("mysql:host=$servername;port=$dbPort;dbname=$database", $username, $password);
@@ -93,7 +84,8 @@
         }
         
         $whereSql = "
-        INSERT INTO page(race_id, race_date, start_time, password, Location) VALUES (:raceId, :raceDate, :startTime, :password, :location) 
+        INSERT INTO page(code, title, from_date, to_date, type_id) VALUES (:code, :title, :fromDate, :toDate, :typeId) 
+
         ";
         
         // The prepare caches the SQL statement for N number of parameters imploded above

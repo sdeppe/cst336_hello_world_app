@@ -10,7 +10,7 @@ checkLoggedIn();
 <html>
     <head>
         <title>Profile</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/styles123.css">
     </head> 
     <body>
         <?php include('navigation.php'); ?>

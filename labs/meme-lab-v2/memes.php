@@ -1,16 +1,14 @@
 <?php
-session_start(); 
+session_start();
 include 'functions.php';
-
-checkLoggedIn(); 
-
+checkLoggedIn();
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
     <title>A Meme</title>
-    <link rel="stylesheet" type="text/css" href="css/styles123.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
     <?php include 'navigation.php' ?>
